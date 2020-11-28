@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  database:
+    build: 
+      context: ./docker/mysql    
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - appnet
+    environment: 
+      MYSQL_ROOT_PASSWORD: "{DB_ROOT_PASS}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+
+
+networks:   
+  appnet:
+volumes: 
+  dbdata:
