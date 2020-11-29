@@ -1,4 +1,5 @@
-const db = require('./models/database');
+require('dotenv').config();
+const db = require('../models/database');
 
 beforeAll(async () => {
     await db.sequelize.sync();
