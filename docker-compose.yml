@@ -18,6 +18,17 @@ services:
       MYSQL_USER: "${DB_USERNAME}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
 
+  addressbook:
+    build:
+      context: ./
+      dockerfile: ./docker/node/Dockerfile
+    depends_on: 
+      - database
+    environment: 
+      DB_HOSTNAME: 172.23.0.1
+    ports:
+      - 3000:3000
+    
 
 networks:   
   appnet:
